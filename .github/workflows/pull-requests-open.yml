@@ -17,6 +17,7 @@ name: Pull request
 
 jobs:
   CI:
+    name: Continous Integration (Pull Request version)
     permissions:
       actions: read
       contents: write
@@ -27,7 +28,7 @@ jobs:
       - name: Configure timezone
         uses: szenius/set-timezone@v2.0
         with:
-          timezone: 'America/Sao_Paulo'
+          timezoneLinux: 'America/Sao_Paulo'
 
       - name: Checkout code
         uses: actions/checkout@v4

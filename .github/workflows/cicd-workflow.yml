@@ -11,6 +11,8 @@ name: CI-CD
 
 jobs:
   CI:
+    name: Continous Integration
+    if: github.ref_name == 'main' || startsWith(github.ref_name, 'feature/') || startsWith(github.ref_name, 'bugfix/') || startsWith(github.ref_name, 'hotfix/')
     permissions:
       actions: read
       contents: write
@@ -21,7 +23,7 @@ jobs:
       - name: Configure timezone
         uses: szenius/set-timezone@v2.0
         with:
-          timezone: 'America/Sao_Paulo'
+          timezoneLinux: 'America/Sao_Paulo'
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -62,19 +64,22 @@ jobs:
             -Dsonar.projectName=github-properties-as-envs
             -Dsonar.organization=godllke
   CD:
+    name: Release Generation
+    needs: CI
+    if: needs.CI.result == 'success' && github.ref_name == 'main'
     permissions:
       actions: read
       contents: write
       id-token: write
       security-events: write
-    needs: CI
+    
     runs-on: ubuntu-latest
-    if: needs.CI.result == 'success'
+    
     steps:
       - name: Configure timezone
         uses: szenius/set-timezone@v2.0
         with:
-          timezone: 'America/Sao_Paulo'
+          timezoneLinux: 'America/Sao_Paulo'
 
       - name: Checkout code
         uses: actions/checkout@v4
