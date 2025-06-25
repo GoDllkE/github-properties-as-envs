@@ -85,12 +85,12 @@ jobs:
         id: project-metadata
         run: |
           echo "PACKAGE_NAME=$(jq -r '.name' package.json)" >> $GITHUB_OUTPUT
-          echo "PACKAGE_VERISON=$(jq -r '.version' package.json)" >> $GITHUB_OUTPUT
+          echo "PACKAGE_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_OUTPUT
 
-      - name: Generating tag release v${{ steps.project-metadata.outputs.RELEASE_TAG }}
+      - name: Generating tag release v${{ steps.project-metadata.outputs.PACKAGE_VERSION }}
         id: tag-release
         run: |
-          git tag --force v${{ steps.project-metadata.outputs.RELEASE_TAG }}
+          git tag --force v${{ steps.project-metadata.outputs.PACKAGE_VERSION }}
           git push --force --tags
 
       - name: Collecting previous and latest tags metadata
@@ -118,7 +118,7 @@ jobs:
         with:
           token: ${{ github.token }}
           name: ${{ steps.project-metadata.outputs.PACKAGE_NAME }} 
-          tag: v${{ steps.project-metadata.outputs.PACKAGE_VERISON }}
+          tag: v${{ steps.project-metadata.outputs.PACKAGE_VERSION }}
           body: |
             ### Release Notes
             Change on code can be found [here](${{ github.server_url }}/${{ github.repository }}/compare/${{ steps.tags-metadata.outputs.PREVIOUS_TAG }}...${{ steps.project-metadata.outputs.LATEST_TAG }}).
