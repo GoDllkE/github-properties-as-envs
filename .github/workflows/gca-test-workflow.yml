@@ -31,7 +31,7 @@ jobs:
         id: test-success
         uses: ./
         with:
-          github_token: ${{ github.token }}
+          github_token: ${{ secrets.ACTIONS_PAT_TOKEN }}
           repository_owner: ${{ github.repository_owner }}
           repository_name: ${{ github.event.repository.name }}
 
@@ -39,6 +39,6 @@ jobs:
         id: test-failure
         uses: ./
         with:
-          github_token: ${{ github.token }}
+          github_token: ${{ secrets.ACTIONS_PAT_TOKEN }}
           repository_owner: ${{ github.repository_owner }}
           repository_name: "Jogo-da-velha"
