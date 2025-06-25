@@ -1,0 +1,10 @@
+# Example of a CODEOWNERS file
+
+# Assigns owners to the repositories who will always be added to PRs.
+* @GoDllkE
+
+# Assign a specific team to review PRs for a specific directory
+# /docs/ @GoDllkE
+
+# Assign a specific user to review PRs for specific files
+# /src/api/*.js @GoDllkE

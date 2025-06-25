@@ -1,0 +1,69 @@
+# Workflow para execução de tarefas relevantes na abertura ou atualização de um pull request
+on:
+  # Avalia apenas pull requests das branches develop/release/main quando selecionadas como branch de origem
+  # Ref: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onpull_requestpull_request_targetbranchesbranches-ignore
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: ['*']
+    paths-ignore:
+      - 'README.md'
+      - LICENSE
+      - .vscode/*
+  # Permite execução manual do workflow na aba actions do repositorio
+  workflow_dispatch: {}
+
+# Nome do fluxo principal
+name: Pull request
+
+jobs:
+  CI:
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+      security-events: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure timezone
+        uses: szenius/set-timezone@v2.0
+        with:
+          timezone: 'America/Sao_Paulo'
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Cache node modules
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        id: npm-install
+        run: npm ci
+
+      - name: Run tests
+        id: npm-test
+        run: npm test
+
+      - name: Sonarcloud Scan
+        uses: sonarsource/sonarqube-scan-action@v4.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.qualitygate.wait=true
+            -Dsonar.projectKey=GoDllkE_github-properties-as-envs
+            -Dsonar.projectName=github-properties-as-envs
+            -Dsonar.organization=godllke

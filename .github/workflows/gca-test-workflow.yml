@@ -1,0 +1,44 @@
+on:
+  push:
+    branches: ['*']
+    paths-ignore:
+      - 'README.md'
+      - LICENSE
+      - .vscode/*
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: ['*']
+    paths-ignore:
+      - 'README.md'
+      - LICENSE
+      - .vscode/*
+  workflow_dispatch: {}
+
+name: Custom Action Homologation
+
+jobs:
+  custom-action-homologation:
+    name: Custom Action Homologation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: ✅ Test with success (valid repository)
+        id: test-success
+        uses: ./
+        with:
+          github_token: ${{ github.token }}
+          repository_owner: ${{ github.repository_owner }}
+          repository_name: ${{ github.event.repository.name }}
+
+      - name: ✅ Test with failure (no repository properties)
+        id: test-failure
+        uses: ./
+        with:
+          github_token: ${{ github.token }}
+          repository_owner: ${{ github.repository_owner }}
+          repository_name: "Jogo-da-velha"

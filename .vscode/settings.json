@@ -1,0 +1,14 @@
+{
+  // SonarLint configuration for Sonarcloud
+  "sonarlint.connectedMode.project": {
+    "connectionId": "vrbeneficiosteam",
+    "projectKey": "vr-tools_properties-as-envs"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "yaml.customTags": [
+    "!secrets",
+    "!env",
+  ]
+}

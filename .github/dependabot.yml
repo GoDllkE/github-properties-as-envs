@@ -1,0 +1,123 @@
+version: 2
+updates:
+
+  # 🚨 CRITICAL SECURITY DEPENDENCIES - DAILY Frequency
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "09:00"
+    target-branch: "main"
+    
+    # 🔥 Configuration for critical updates
+    assignees:
+      - "GoDllkE"
+    reviewers:
+      - "GoDllkE"
+    
+    commit-message:
+      prefix: "[🔒 Critical dependencies]"
+      include: "scope"
+    
+    versioning-strategy: increase
+    
+    # 🎯 Only security updates
+    groups:
+      security-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "security"
+    
+    open-pull-requests-limit: 1
+    labels:
+      - "critical"
+      - "security"
+      - "dependencies"
+      - "dependabot"
+      - "javascript"
+
+  # 🚀 PRODUCTION Dependencies - WEEKLY Frequency
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "08:00"
+    target-branch: "main"
+    
+    # 👥 Assignees and Reviewers
+    assignees:
+      - "GoDllkE"
+    
+    # 📝 Commit customization
+    commit-message:
+      prefix: "[⬆️ Priority dependencies]"
+      prefix-development: "[⬆️ Non-priority dependencies]"
+      include: "scope"
+    
+    # 📦 Versioning strategy
+    versioning-strategy: increase
+    
+    # 🎯 Grouping production dependencies
+    groups:
+      production-deps:
+        patterns:
+          - "@actions/core"
+          - "@actions/github"
+          - "@octokit/rest"
+        update-types:
+          - "patch"
+    
+    # ⚙️ Specific settings
+    open-pull-requests-limit: 1
+    pull-request-branch-name:
+      separator: "/"
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "dependabot"
+    milestone: 1
+
+  # 🛠️ DEVELOPMENT Dependencies - MONTHLY Frequency
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+      day: 15
+      time: "08:00"
+    target-branch: "main"
+    
+    # 👥 Assignees and Reviewers (less critical)
+    assignees:
+      - "GoDllkE"
+    
+    # 📝 Commit customization for Dev
+    commit-message:
+      prefix: "[⬆️ Non-priority dependencies]"
+      include: "scope"
+    
+    # 📦 More conservative strategy for dev
+    versioning-strategy: increase-if-necessary
+    
+    # 🎯 Grouping development dependencies
+    groups:
+      dev-deps:
+        patterns:
+          - "@vercel/ncc"
+          - "eslint"
+          - "jest"
+          - "prettier"
+          - "sonar-scanner"
+        update-types:
+          - "patch"
+    
+    # ⚙️ Dev settings (less urgent)
+    open-pull-requests-limit: 2
+    pull-request-branch-name:
+      separator: "/"
+    labels:
+      - "dependencies"
+      - "dependabot"
+      - "low priority"
+      - "javascript"

@@ -1,0 +1,44 @@
+{
+  "name": "github-properties-as-envs",
+  "version": "1.0.0",
+  "description": "Github Actions to retrieve GitHub Custom Properties and export them as outputs.",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "ncc build index.js -o dist",
+    "prepare": "npm run build",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoDllkE/github-properties-as-envs.git"
+  },
+  "keywords": [
+    "gca",
+    "custom-properties",
+    "properties-as-envs",
+    "github-action"
+  ],
+  "author": "GoDlikE <gustavot53@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/GoDllkE/github-properties-as-envs/issues"
+  },
+  "homepage": "https://github.com/GoDllkE/github-properties-as-envs#readme",
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.3",
+    "eslint": "^9.29.0",
+    "jest": "^30.0.2",
+    "prettier": "^3.6.0",
+    "sonar-scanner": "^3.1.0"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
+    "@octokit/rest": "^22.0.0"
+  }
+}

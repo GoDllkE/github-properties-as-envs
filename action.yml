@@ -1,0 +1,22 @@
+name: "Github Repository Properties as Outputs"
+description: "Github Actions to retrieve GitHub Custom Properties and export them as outputs"
+author: "Gustavo Toledo <goliveira@vr.com.br>"
+inputs:
+  github_token:
+    description: "GitHub access token. Required to access the repository's custom properties."
+    required: true
+    default: ""
+  repository_owner:
+    description: "Repository owner. If not provided, the current repository owner will be used."
+    required: true
+    default: ""
+  repository_name:
+    description: "Repository name. If not provided, the current repository name will be used."
+    required: true
+    default: ""
+outputs: {}
+runs:
+  using: 'node20'           # Node.js version used to run the action (node12, node16, node20, etc).
+  main: 'dist/index.js'     # Main file executed in the action
+  # post: 'cleanup.js'      # (Optional) Script executed after main (useful for cleanup, releasing resources, deleting temp files, etc).
+  #pre: 'pre.js'            # (Optional) Script executed before main (useful for setup, installing dependencies, etc).

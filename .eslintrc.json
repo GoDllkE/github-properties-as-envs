@@ -1,0 +1,18 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "prettier"
+  ],
+  "plugins": ["jest"],
+  "rules": {
+    "no-unused-vars": ["warn"],
+    "no-console": "off",
+    "semi": ["error", "never"],
+    "quotes": ["error", "single"]
+  }
+}
