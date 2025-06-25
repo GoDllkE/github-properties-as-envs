@@ -1,7 +1,7 @@
 # 🏷️ GitHub Properties as Envs
 
 [![CI/CD](https://github.com/GoDllkE/github-properties-as-envs/actions/workflows/cicd-workflow.yml/badge.svg?branch=main)](https://github.com/GoDllkE/github-properties-as-envs/actions/workflows/cicd-workflow.yml)
-[![Test Action](https://github.com/GoDllkE/github-properties-as-envs/actions/workflows/gca-test-workflow.yml/badge.svg?branch=main)](https://github.com/GoDllkE/github-properties-as-envs/actions/workflows/gca-test-workflow.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=GoDllkE_github-properties-as-envs&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=GoDllkE_github-properties-as-envs)
 
 > **A GitHub Action to retrieve and validate custom repository properties, exporting them as outputs for your workflows.**
 
