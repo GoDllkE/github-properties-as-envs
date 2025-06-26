@@ -1,22 +1,29 @@
-name: "Github Repository Properties as Outputs"
-description: "Github Actions to retrieve GitHub Custom Properties and export them as outputs"
-author: "Gustavo Toledo <goliveira@vr.com.br>"
+name: "GitHub Repository Properties as Outputs"
+description: "Retrieve GitHub Custom Properties from a repository and export them as GitHub Actions outputs"
+branding:
+  color: 'blue'
+  icon: 'database'  # Mudei para um ícone mais apropriado
+author: "Gustavo Toledo"  # Removi o email para privacy
+
 inputs:
   github_token:
-    description: "GitHub access token. Required to access the repository's custom properties."
-    required: true
+    description: "GitHub access token with repository read permissions. If not provided, will try to use GITHUB_TOKEN or GH_PAT environment variables."
+    required: false  # Mudei para false já que o código tenta pegar de env vars
     default: ""
   repository_owner:
-    description: "Repository owner. If not provided, the current repository owner will be used."
-    required: true
+    description: "Repository owner (organization or user). If not provided, will use GITHUB_REPOSITORY_OWNER environment variable or current repository owner."
+    required: false  # Mudei para false já que pode vir de env vars
     default: ""
   repository_name:
-    description: "Repository name. If not provided, the current repository name will be used."
-    required: true
+    description: "Repository name. If not provided, will use GITHUB_REPOSITORY_NAME environment variable or current repository name."
+    required: false  # Mudei para false já que pode vir de env vars
     default: ""
-outputs: {}
+
+outputs:
+  # Como as propriedades são dinâmicas, você pode documentar alguns exemplos
+  properties:
+    description: "All repository custom properties will be exported as individual outputs with their property names as keys"
+
 runs:
-  using: 'node20'           # Node.js version used to run the action (node12, node16, node20, etc).
-  main: 'dist/index.js'     # Main file executed in the action
-  # post: 'cleanup.js'      # (Optional) Script executed after main (useful for cleanup, releasing resources, deleting temp files, etc).
-  #pre: 'pre.js'            # (Optional) Script executed before main (useful for setup, installing dependencies, etc).
+  using: 'node20'
+  main: 'dist/index.js'

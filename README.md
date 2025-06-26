@@ -47,15 +47,10 @@
     repository_name: ${{ github.event.repository.name }}
     validate_properties: true
 
-- name: Use Properties (example property values)
+- name: Use Properties
   run: |
-    echo "Deploy: ${{ steps.gca-properties.outputs.deploy }}"
+    echo "Deploy method: ${{ steps.gca-properties.outputs.deploy }}"
     echo "Framework: ${{ steps.gca-properties.outputs.framework }}"
-    echo "Manager: ${{ steps.gca-properties.outputs.manager }}"
-    echo "Infrastructure: ${{ steps.gca-properties.outputs.infrastructure }}"
-    echo "Language: ${{ steps.gca-properties.outputs.language }}"
-    echo "Project: ${{ steps.gca-properties.outputs.project }}"
-    echo "OtherProperty: ${{ steps.gca-properties.outputs.otherproperty }}"
 ```
 
 ## ⚙️ Inputs

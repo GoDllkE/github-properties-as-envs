@@ -104,6 +104,7 @@ jobs:
           echo "LATEST_TAG=$(git tag --abbrev=0 --tags)" >> $GITHUB_OUTPUT"
           echo "PREVIOUS_TAG_COMMIT=$(git rev-list --tags --skip=1 --max-count=1)" >> $GITHUB_OUTPUT
           echo "PREVIOUS_TAG=$(git describe --abbrev=0 --always --tags $PREVIOUS_TAG_COMMIT)" >> $GITHUB_OUTPUT
+        continue-on-error: true # For fist release, there will be no previous tag
           
       - name: Generating changelog
         id: changelog-generator
@@ -112,10 +113,12 @@ jobs:
           token: ${{ github.token}}
           filter-author: '(dependabot|github-actions|bot)'
           filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+        continue-on-error: true # For fist release, there will be no previous tag
       
       - name: Exporting generated changelog into file
         id: changelog-file-exporter
         run: echo "${{ steps.changelog-generator.outputs.changelog }}" > CHANGELOG.md
+        continue-on-error: true # For fist release, there will be no previous tag
 
       - name: Creating Github Release
         id: github-release
@@ -134,3 +137,4 @@ jobs:
             ${{ steps.changelog-file-exporter.outputs.changelog }}
           generateReleaseNotes: true
           SkipIfReleaseExists: true
+        continue-on-error: true # For fist release, there will be no previous tag
