@@ -1,7 +1,11 @@
 # 🏷️ GitHub Properties as Envs
 
-[![CI/CD](https://github.com/GoDllkE/github-properties-as-envs/actions/workflows/cicd-workflow.yml/badge.svg?branch=main)](https://github.com/GoDllkE/github-properties-as-envs/actions/workflows/cicd-workflow.yml)
+[![CI-CD](https://github.com/GoDllkE/github-properties-as-envs/actions/workflows/cicd-workflow.yml/badge.svg)](https://github.com/GoDllkE/github-properties-as-envs/actions/workflows/cicd-workflow.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=GoDllkE_github-properties-as-envs&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=GoDllkE_github-properties-as-envs)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GoDllkE_github-properties-as-envs&metric=coverage)](https://sonarcloud.io/summary/new_code?id=GoDllkE_github-properties-as-envs)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=GoDllkE_github-properties-as-envs&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=GoDllkE_github-properties-as-envs)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=GoDllkE_github-properties-as-envs&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=GoDllkE_github-properties-as-envs)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=GoDllkE_github-properties-as-envs&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=GoDllkE_github-properties-as-envs)
 
 > **A GitHub Action to retrieve and validate custom repository properties, exporting them as outputs for your workflows.**
 
